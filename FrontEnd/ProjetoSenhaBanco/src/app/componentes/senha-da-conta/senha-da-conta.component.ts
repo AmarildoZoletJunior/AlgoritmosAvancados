@@ -22,8 +22,8 @@ export class SenhaDaContaComponent {
 
     this.botoesInferiores = [
       { texto: '7 e 8' },
-      { texto: '9' },
-      { texto: 'ENTER' }
+      { texto: '9 e 0' },
+      { texto: '( . )( . )' }
     ];
   }
 

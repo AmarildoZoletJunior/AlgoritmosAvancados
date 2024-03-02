@@ -5,10 +5,10 @@ import { LoginComponent } from './componentes/login/login/login.component';
 import { SenhaDaContaComponent } from './componentes/senha-da-conta/senha-da-conta.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Rota padrão
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: 'login', component: LoginComponent },
-  { path: 'proximo', component: SenhaDaContaComponent }, // Rota para o ProximoComponente
-  // Adicione outras rotas conforme necessário
+  { path: 'proximo', component: SenhaDaContaComponent }, 
+  
 ];
 
 @NgModule({
