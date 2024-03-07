@@ -1,0 +1,24 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card border shadow p-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" class="form-control" [(ngModel)]="senha">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 mb-2" *ngFor="let botao of botoesSuperiores">
+                        <button class="btn btn-primary btn-block btn-fixed-size">{{ botao.texto }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-2" *ngFor="let botao of botoesInferiores.slice(0, 3)">
+                        <button class="btn btn-primary btn-block btn-fixed-size">{{ botao.texto }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
