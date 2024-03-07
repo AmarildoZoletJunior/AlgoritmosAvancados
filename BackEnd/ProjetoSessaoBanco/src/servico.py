@@ -39,10 +39,9 @@ def BuscarSessao():
     try:
         endereco_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
         print("Endereço ip" + str(endereco_ip))
-        HashRetorno = Sessoes().BuscarSessaoValida()
-        return jsonify({"Hash": HashRetorno}), int(200)
+        HashRetorno,OrdemRetorno = Sessoes().BuscarSessaoValida()
+        return jsonify({"Hash": HashRetorno,'Ordem':OrdemRetorno}), int(200)
     except Exception as erro:
-        print(erro)
         return 'Ocorreu um erro desconhecido.', 500
         
         
