@@ -1,4 +1,4 @@
 export interface SessaoReponse {
-    hash:string
-    senha:string
+    Hash:string
+    Ordem:string
 }

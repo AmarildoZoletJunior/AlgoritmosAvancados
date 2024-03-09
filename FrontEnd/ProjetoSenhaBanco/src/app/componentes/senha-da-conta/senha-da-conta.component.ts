@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { LoginData } from 'src/app/service/interface/login-request';
 import { LoginService } from 'src/app/service/services/login/login.service';
 
@@ -12,10 +13,10 @@ export class SenhaDaContaComponent {
   botoesSuperiores: any[] = [];
   botoesInferiores: any[] = [];
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,private cookieService:CookieService) { }
 
   ngOnInit(): void {
-    const retornoAPI = '0976854321'
+    const retornoAPI = this.cookieService.get('ordem')
     this.botoesSuperiores = [
       { texto: retornoAPI.substring(0,1) + ' e ' + retornoAPI.substring(1,2)},
       { texto: retornoAPI.substring(2,3) + ' e ' + retornoAPI.substring(3,4) },
@@ -30,11 +31,12 @@ export class SenhaDaContaComponent {
   }
 
   acaoBotao(botao: any) {
-
-    const dados: LoginData = {
-      Agencia: '123456',
-      Conta: '987654',
-      Senha: 'senha123'
+    const regexNueros = /[^\d]+/g;
+    this.senha += botao.texto.replace(regexNueros,"")  
+    const dados: LoginData = {  
+      Agencia: this.cookieService.get('agencia'),
+      Conta: this.cookieService.get('conta'),
+      Senha: this.senha
     };
 
     if (botao.texto == '->') {
@@ -45,8 +47,7 @@ export class SenhaDaContaComponent {
       console.log('ENTER');
     }
     else {
-      this.senha += botao.texto
-      console.log('Botão clicado:', botao.texto);
+      console.log('Botão clicado:', this.senha);
     }
   }
 }

@@ -5,9 +5,9 @@ import { LoginComponent } from './componentes/login/login/login.component';
 import { SenhaDaContaComponent } from './componentes/senha-da-conta/senha-da-conta.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
-  { path: 'login', component: LoginComponent },
-  { path: 'proximo', component: SenhaDaContaComponent }, 
+  { path: '', redirectTo: 'login/ ', pathMatch: 'full' }, 
+  { path: 'login/:sessaoid', component: LoginComponent},
+  { path: 'senha/:sessaoid', component: SenhaDaContaComponent }, 
   
 ];
 

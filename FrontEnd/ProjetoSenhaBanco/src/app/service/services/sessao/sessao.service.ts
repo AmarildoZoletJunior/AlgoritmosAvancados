@@ -11,14 +11,14 @@ export class SessaoService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = '';
+  baseUrl: string = 'http://192.168.43.237:5000/';
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json',
     }),
   }
 
-  public buscarSessao(sessaoData:SessaoRequest): Observable<SessaoReponse>{
-    return this.http.post<SessaoReponse>(this.baseUrl, sessaoData,this.httpOptions).pipe(resp => resp, error => error);
+  public buscarSessao(): Observable<SessaoReponse>{
+    return this.http.get<SessaoReponse>(this.baseUrl + 'BuscarSessao',this.httpOptions).pipe(resp => resp, error => error);
   }
 }

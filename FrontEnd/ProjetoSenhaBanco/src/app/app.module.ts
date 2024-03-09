@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SenhaDaContaComponent } from './componentes/senha-da-conta/senha-da-conta.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginService } from './service/services/login/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { LoginService } from './service/services/login/login.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
