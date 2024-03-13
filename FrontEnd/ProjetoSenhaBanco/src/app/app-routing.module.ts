@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/login/login/login.component';
-import { SenhaDaContaComponent } from './componentes/senha-da-conta/senha-da-conta.component';
+import { SenhaComponent } from './componentes/senha/senha.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login/ ', pathMatch: 'full' }, 
-  { path: 'login/:sessaoid', component: LoginComponent},
-  { path: 'senha/:sessaoid', component: SenhaDaContaComponent }, 
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, 
+  { path: 'login', component: LoginComponent},
+  { path: 'senha/:sessaoid', component: SenhaComponent }, 
   
 ];
 

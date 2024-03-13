@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+
 import { HttpClientModule } from '@angular/common/http'; // Importe o HttpClientModule aqui
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './componentes/login/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SenhaDaContaComponent } from './componentes/senha-da-conta/senha-da-conta.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginService } from './service/services/login/login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { SenhaComponent } from './componentes/senha/senha.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SenhaDaContaComponent
+    SenhaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,3 @@
 export interface LoginReponse {
-    mensagem:string
+    Mensagem:string
 }

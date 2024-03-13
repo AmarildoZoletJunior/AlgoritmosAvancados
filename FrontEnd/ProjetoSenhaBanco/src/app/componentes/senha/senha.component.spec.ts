@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SenhaDaContaComponent } from './senha-da-conta.component';
+import { SenhaComponent } from './senha.component';
 
-describe('SenhaDaContaComponent', () => {
-  let component: SenhaDaContaComponent;
-  let fixture: ComponentFixture<SenhaDaContaComponent>;
+describe('SenhaComponent', () => {
+  let component: SenhaComponent;
+  let fixture: ComponentFixture<SenhaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SenhaDaContaComponent ]
+      declarations: [ SenhaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SenhaDaContaComponent);
+    fixture = TestBed.createComponent(SenhaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

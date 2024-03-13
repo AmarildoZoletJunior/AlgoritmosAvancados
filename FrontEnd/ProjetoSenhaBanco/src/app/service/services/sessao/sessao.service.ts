@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SessaoRequest } from '../../interface/sessao-request';
 import { Observable } from 'rxjs';
 import { SessaoReponse } from '../../interface/sessao-reponse';
 
@@ -11,7 +10,7 @@ export class SessaoService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = 'http://192.168.43.237:5000/';
+  baseUrl: string = 'http://localhost:5000/';
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json',

@@ -3,9 +3,11 @@ from Entidades.conta import Conta
 from Database.sqlServer import SQLServer
 from Entidades.sessoes import Sessoes
 from flask import Flask, jsonify,request
+from flask_cors import CORS
 
 warnings.filterwarnings("ignore", category = UserWarning)
 app = Flask(__name__)
+CORS(app)
 sql_server_conn = SQLServer()
 
 @app.route('/Autenticar', methods=['POST'])
@@ -46,4 +48,4 @@ def BuscarSessao():
         
         
 if __name__ == '__main__':
-    app.run(debug=True,host='192.168.56.1')
+    app.run(debug=True,host='localhost')
