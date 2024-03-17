@@ -21,7 +21,8 @@ class Sessoes():
     def BuscarSessaoValida(self):
         db = SQLServer()   
         db.LiberarSessoes()
-        linha = db.buscarDado('Sessoes','hash',f'disponivel = 1')
+        linha = db.buscarDado('Sessoes','hash,ordem',f'disponivel = 1')
         hashRetorno = linha[0][0]
+        OrdemRetorno = linha[0][1]
         db.AtualizarRegistro('Sessoes','disponivel = 0, ultima_vez_usado = GETDATE()',f"hash = '{hashRetorno}'")
-        return hashRetorno
+        return hashRetorno,OrdemRetorno
