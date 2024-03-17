@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginData } from 'src/app/service/interface/login-request';
+import { LoginService } from 'src/app/service/services/login/login.service';
 
 @Component({
   selector: 'app-senha-da-conta',
@@ -10,27 +12,42 @@ export class SenhaDaContaComponent {
   botoesSuperiores: any[] = [];
   botoesInferiores: any[] = [];
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    // Simulação de retorno de API para os botões
+    const retornoAPI = '0976854321'
     this.botoesSuperiores = [
-      { texto: '1 e 2' },
-      { texto: '3 e 4' },
-      { texto: '5 e 6' }
+      { texto: retornoAPI.substring(0,1) + ' e ' + retornoAPI.substring(1,2)},
+      { texto: retornoAPI.substring(2,3) + ' e ' + retornoAPI.substring(3,4) },
+      { texto: retornoAPI.substring(4,5) + ' e ' + retornoAPI.substring(5,6) }
     ];
 
     this.botoesInferiores = [
-      { texto: '7 e 8' },
-      { texto: '9 e 0' },
-      { texto: '( . )( . )' }
+      { texto: retornoAPI.substring(6,7) + ' e ' + retornoAPI.substring(7,8) },
+      { texto: retornoAPI.substring(8,9) + ' e ' + retornoAPI.substring(9,10) },
+      { texto: '->' }
     ];
   }
 
   acaoBotao(botao: any) {
-    // Implemente a ação que deseja executar quando um botão é clicado
-    console.log('Botão clicado:', botao.texto);
-  }
 
+    const dados: LoginData = {
+      Agencia: '123456',
+      Conta: '987654',
+      Senha: 'senha123'
+    };
+
+    if (botao.texto == '->') {
+      this.loginService.autenticar(dados)
+        .subscribe(response => { console.log('reponse: ', response) },
+          error => { console.log('Erro:', error) }
+      );
+      console.log('ENTER');
+    }
+    else {
+      this.senha += botao.texto
+      console.log('Botão clicado:', botao.texto);
+    }
+  }
 }
 

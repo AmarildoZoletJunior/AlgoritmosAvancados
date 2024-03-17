@@ -10,12 +10,12 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-4 mb-2" *ngFor="let botao of botoesSuperiores">
-                        <button class="btn btn-primary btn-block btn-fixed-size">{{ botao.texto }}</button>
+                        <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{ botao.texto }}</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-2" *ngFor="let botao of botoesInferiores.slice(0, 3)">
-                        <button class="btn btn-primary btn-block btn-fixed-size">{{ botao.texto }}</button>
+                        <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{ botao.texto }}</button>
                     </div>
                 </div>
             </div>
