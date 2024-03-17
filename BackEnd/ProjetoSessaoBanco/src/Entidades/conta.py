@@ -5,6 +5,7 @@ from Database.sqlServer import SQLServer
 class Conta:    
     def verificarSenha(self,agencia,conta,senha) -> bool:
         db = SQLServer()   
+        print(senha)
         linhas = db.buscarDados('Usuarios','senha',f'agencia = {agencia} and conta = {conta}')
         if len(linhas) <= 0:
             return False, 'Conta não encontrada.'
