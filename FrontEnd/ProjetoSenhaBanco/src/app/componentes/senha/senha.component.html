@@ -1,5 +1,13 @@
+
+
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card border shadow p-4">
+      <div class="alert alert-success" role="alert" *ngIf="mostrarModal">
+        Login Efetuado com Sucesso
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf="mostrarModalErro">
+        Senha Incorreta
+      </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -18,7 +26,12 @@
                         <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{ botao.texto }}</button>
                     </div>
                 </div>
+                <button class="btn btn-primary btn-sm mt-4" (click)="Deletar()">Deletar</button>
+                
             </div>
         </div>
     </div>
 </div>
+
+
+  

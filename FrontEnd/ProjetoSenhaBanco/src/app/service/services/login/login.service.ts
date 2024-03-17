@@ -11,7 +11,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = '';
+  baseUrl: string = 'http://localhost:5000/Autenticar';
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json',

@@ -5,6 +5,7 @@ from Entidades.conta import Conta
 from Database.sqlServer import SQLServer
 from Entidades.sessoes import Sessoes
 from flask import Flask, jsonify,request
+from flask_cors import CORS
 
 warnings.filterwarnings("ignore", category = UserWarning)
 app = Flask(__name__)
