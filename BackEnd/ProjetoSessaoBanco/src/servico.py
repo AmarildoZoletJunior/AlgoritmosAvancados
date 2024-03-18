@@ -57,4 +57,4 @@ def CriarUsuario():
         return 'Ocorreu um erro desconhecido.', 500
         
 if __name__ == '__main__':
-    app.run(debug=True,host='192.168.43.237')
+    app.run(debug=True,host='192.168.1.12')

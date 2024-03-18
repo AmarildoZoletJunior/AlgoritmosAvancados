@@ -1,14 +1,24 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card border shadow p-4">
     <h2 class="text-center mb-4">Informações Bancárias</h2>
-    <div class="form-group text-center">
-      <label for="agencia">Agência:</label>
-      <input type="text" id="agencia" class="form-control mx-auto" [(ngModel)]="agencia">
-    </div>
-    <div class="form-group text-center">
-      <label for="conta">Conta:</label>
-      <input type="text" id="conta" class="form-control mx-auto" [(ngModel)]="conta">
-    </div>
-    <button class="btn btn-primary btn-sm mt-4" (click)="proximo()">Próximo</button>
+    <form [formGroup]="formulario" (ngSubmit)="proximo()">
+      <div class="form-group text-center">
+        <label for="agencia">Agência:</label>
+        <input formControlName="agencia" type="text" id="agencia" class="form-control mx-auto">
+        <div *ngIf="formulario.get('agencia')?.errors?.['minlength']" class="text-danger">A agencia deve ter no mínimo 6 caracteres.</div>
+        <div *ngIf="formulario.get('agencia')?.errors?.['maxlength']" class="text-danger">A agencia deve ter no máximo 6 caracteres.</div>
+        <div *ngIf="formulario.get('agencia')?.errors?.['pattern']" class="text-danger">Somente é aceito números na agencia.</div>
+        <!-- <div *ngIf="formulario.get('agencia')?.invalid && formulario.get('agencia')?.touched" class="text-danger">Agência é obrigatória.</div> -->
+      </div>
+      <div class="form-group text-center">
+        <label for="conta">Conta:</label>
+        <input formControlName="conta" type="text" id="conta" class="form-control mx-auto">
+        <div *ngIf="formulario.get('conta')?.errors?.['minlength']" class="text-danger">A conta deve ter no mínimo 6 caracteres.</div>
+        <div *ngIf="formulario.get('conta')?.errors?.['pattern']" class="text-danger">Somente é aceito números na conta.</div>
+        <div *ngIf="formulario.get('conta')?.errors?.['maxlength']" class="text-danger">A conta deve ter no máximo 6 caracteres.</div>
+        <!-- <div *ngIf="formulario.get('conta')?.invalid && formulario.get('conta')?.touched" class="text-danger">Conta é obrigatória.</div> -->
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm mt-4">Próximo</button>
+    </form>
   </div>
 </div>
