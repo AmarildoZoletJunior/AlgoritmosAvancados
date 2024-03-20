@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { SessaoService } from 'src/app/service/services/sessao/sessao.service';
 
@@ -12,12 +13,13 @@ import { SessaoService } from 'src/app/service/services/sessao/sessao.service';
 export class LoginComponent implements OnInit {
   formulario: FormGroup;
   hash: string = '';
+  mostrarModalErro: boolean = false;
+  MensagemErro: String = 'Erro'
 
   constructor(
     private router: Router,
     private RequisicaoSessao: SessaoService,
     private cookieService: CookieService,
-    private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {    
     this.cookieService.deleteAll();
@@ -28,25 +30,23 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.RequisicaoSessao.buscarSessao().subscribe(x => {
-      this.hash = x.Hash;
-      this.cookieService.set('hash', x.Hash, 1, '/', undefined, false, 'Lax');
-      this.cookieService.set('ordem', x.Ordem, 1, '/', undefined, false, 'Lax');
-      const hashEsperado = x.Hash;
-      const hashAtual = this.activatedRoute.snapshot.paramMap.get('sessaoid');
-      if (hashAtual != hashEsperado) {
-        this.router.navigate(['/']);
-      }
-    });
+    
   }
 
   proximo(): void {
     if (this.formulario.valid) {
-      this.cookieService.set('conta', this.formulario.value.conta);
-      this.cookieService.set('agencia', this.formulario.value.agencia);
-      this.router.navigate(['/senha/', this.hash]);
-    } else {
-      
+      this.RequisicaoSessao.buscarSessao().subscribe(x => {
+        this.hash = x.Hash;
+        this.cookieService.set('hash', x.Hash, 1, '/', undefined, false, 'Lax');
+        this.cookieService.set('ordem', x.Ordem, 1, '/', undefined, false, 'Lax');
+        this.cookieService.set('conta', this.formulario.value.conta);
+        this.cookieService.set('agencia', this.formulario.value.agencia);
+        this.router.navigate(['/senha/', this.hash]);
+      },(erros : HttpErrorResponse) => {
+        this.mostrarModalErro = true
+        this.MensagemErro = erros.statusText 
+      });
+    } else {  
       if (this.formulario.get('agencia')?.value.trim().length < 6) {
         this.formulario.get('agencia')?.setErrors({ minlength: true });
       }
@@ -60,7 +60,6 @@ export class LoginComponent implements OnInit {
       if (this.formulario.get('conta')?.value.trim().length > 6) {
         this.formulario.get('conta')?.setErrors({ maxlength: true });
       }
-
       if (!this.contemApenasNumeros('conta') && !(this.formulario.get('conta')?.value.trim().length < 6)) {
         this.formulario.get('conta')?.setErrors({ pattern: true });
       }

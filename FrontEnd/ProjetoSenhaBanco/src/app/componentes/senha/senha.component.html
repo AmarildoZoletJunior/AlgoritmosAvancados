@@ -1,37 +1,36 @@
-
-
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card border shadow p-4">
-      <div class="alert alert-success" role="alert" *ngIf="mostrarModal">
-        Login Efetuado com Sucesso
-      </div>
-      <div class="alert alert-success" role="alert" *ngIf="mostrarModalErro">
-        Senha Incorreta
-      </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" class="form-control" [(ngModel)]="senha">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-4 mb-2" *ngFor="let botao of botoesSuperiores">
-                        <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{ botao.texto }}</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-2" *ngFor="let botao of botoesInferiores.slice(0, 3)">
-                        <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{ botao.texto }}</button>
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-sm mt-4" (click)="Deletar()">Deletar</button>
-                
-            </div>
+        <div class="alert alert-danger" role="alert" *ngIf="mostrarModalErro">
+            Senha Incorreta
         </div>
+        <form [formGroup]="formulario">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" formControlName="senha" class="form-control" [(ngModel)]="senha">
+                        <div *ngIf="formulario.get('senha')?.errors?.['minlength']" class="text-danger">A senha deve ter no mínimo 5 caracteres.</div>
+                        <div *ngIf="formulario.get('senha')?.errors?.['maxlength']" class="text-danger">A senha deve ter no máximo 5 caracteres.</div>
+                        <div *ngIf="formulario.get('senha')?.errors?.['pattern']" class="text-danger">Somente é aceito números na senha.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4 mb-2" *ngFor="let botao of botoesSuperiores">
+                            <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{
+                                botao.texto }}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-2" *ngFor="let botao of botoesInferiores.slice(0, 3)">
+                            <button class="btn btn-primary btn-block btn-fixed-size" (click)="acaoBotao(botao)">{{
+                                botao.texto }}</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm mt-4" (click)="Deletar()">Deletar</button>
+
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-
-
-  

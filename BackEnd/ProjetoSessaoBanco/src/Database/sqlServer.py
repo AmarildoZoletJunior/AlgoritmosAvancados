@@ -3,8 +3,8 @@ import pyodbc
 
 class SQLServer:
     def __init__(self):
-        # self.server = '192.168.0.108\\SQLEXPRESS'
-        self.server = '192.168.1.17\\SQLEXPRESS'
+        self.server = '100.97.70.83\\SQLEXPRESS'
+        # self.server = '100.66.47.61\\SQLEXPRESS'
         self.database = 'cavalo'
         self.user = 'sa'
         self.senha = '123'
